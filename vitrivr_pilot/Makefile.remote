@@ -1,0 +1,50 @@
+all: .has_runall .has_doextract
+
+clean:
+	rm -f .has_udocker .has_adampro .has_cineast .has_vitrivr .has_nginx .has_runall
+
+.has_udocker:
+	curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > udocker && \
+	  chmod u+rx ./udocker && \
+	  ./udocker install && \
+	  mv ./udocker ~/.udocker/bin/ && \
+	  touch $@
+
+.has_adampro: .has_udocker
+	udocker pull vitrivr/adampro:latest-selfcontained && \
+	  { udocker rm -f adampro || true; } && \
+	  udocker create --name=adampro vitrivr/adampro:latest-selfcontained && \
+	  udocker setup --execmode=S1 adampro && \
+	  touch $@
+
+.has_cineast: from_local/cineast/build/libs from_local/cineast_config.json
+	rm -rf cineast_built && \
+	  cp -r from_local/cineast/build/libs cineast_built && \
+	  cp -f from_local/cineast_config.json cineast_built/cineast.json && \
+	  touch $@
+
+.has_nginx: .has_udocker
+	udocker pull nginx && \
+	  { udocker rm -f nginx || true; } && \
+	  udocker create --name=nginx nginx && \
+	  udocker setup --execmode=S1 nginx && \
+	  touch $@
+
+.has_vitrivr: .has_nginx from_local/vitrivr-ng/dist from_local/vitrivr_config.json
+	rm -rf vitrivr_built && \
+	  cp -r from_local/vitrivr-ng/dist vitrivr_built && \
+	  cat from_local/vitrivr_config.json | envsubst > vitrivr_built/config.json && \
+	  touch $@
+
+.has_runall: .has_adampro .has_cineast .has_vitrivr
+	rm -f runall.sh runall_screenrc && \
+	  cp from_local/runall.sh from_local/runall_screenrc . && \
+	  touch $@
+
+cineast_built/cineast_job.json: from_local/cineast_job.json .has_cineast
+	cat $< | VITRIVR=`pwd`/vitrivr_built envsubst > $@
+
+.has_doextract: cineast_built/cineast_job.json .has_cineast
+	rm -f doextract.sh && \
+	  cp from_local/doextract.sh doextract.sh && \
+	  touch $@

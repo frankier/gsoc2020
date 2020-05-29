@@ -1,0 +1,16 @@
+all: cineast/buildlibs/cineast.jar vitrivr-ng/dist
+
+clean: 
+	rm -rf cineast
+
+cineast/.git:
+	git clone https://github.com/vitrivr/cineast.git cineast
+
+cineast/buildlibs/cineast.jar: cineast/.git
+	cd cineast && ./gradlew deploy
+
+vitrivr-ng/dist:
+	git clone https://github.com/vitrivr/vitrivr-ng.git vitrivr-ng
+	cd vitrivr-ng && \
+	  npm install && \
+	  npm run build -prod
