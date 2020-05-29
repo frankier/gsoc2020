@@ -1,7 +1,7 @@
-all: .has_runall .has_doextract
+all: doextract.sh runall.sh
 
 clean:
-	rm -f .has_udocker .has_adampro .has_cineast .has_vitrivr .has_nginx .has_runall
+	rm -f .has_udocker .has_adampro .has_cineast .has_vitrivr .has_nginx runall.sh cineast_built/cineast_job.json doextract.sh
 
 .has_udocker:
 	curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > udocker && \
@@ -36,15 +36,14 @@ clean:
 	  cat from_local/vitrivr_config.json | envsubst > vitrivr_built/config.json && \
 	  touch $@
 
-.has_runall: .has_adampro .has_cineast .has_vitrivr
+runall.sh: .has_adampro .has_cineast .has_vitrivr from_local/runall.sh
 	rm -f runall.sh runall_screenrc && \
-	  cp from_local/runall.sh from_local/runall_screenrc . && \
-	  touch $@
+	  cp from_local/runall.sh from_local/runall_screenrc .
 
 cineast_built/cineast_job.json: from_local/cineast_job.json .has_cineast
 	cat $< | VITRIVR=`pwd`/vitrivr_built envsubst > $@
 
-.has_doextract: cineast_built/cineast_job.json .has_cineast
+
+doextract.sh: cineast_built/cineast_job.json .has_cineast from_local/doextract.sh
 	rm -f doextract.sh && \
-	  cp from_local/doextract.sh doextract.sh && \
-	  touch $@
+	  cp from_local/doextract.sh doextract.sh
