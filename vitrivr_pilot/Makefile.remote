@@ -4,7 +4,7 @@ clean:
 	rm -f .has_udocker .has_adampro .has_cineast .has_vitrivr .has_nginx runall.sh cineast_built/cineast_job.json doextract.sh
 
 .has_udocker:
-	curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > udocker && \
+	curl https://raw.githubusercontent.com/frankier/udocker/gallo/udocker.py > udocker && \
 	  chmod u+rx ./udocker && \
 	  ./udocker install && \
 	  mv ./udocker ~/.udocker/bin/ && \
