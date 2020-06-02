@@ -1,0 +1,6 @@
+[submodule "skeldump/submodules/opencv_wrapper"]
+	path = skeldump/submodules/opencv_wrapper
+	url = https://github.com/frankier/opencv_wrapper.git
+[submodule "skeldump/submodules/lighttrack"]
+	path = skeldump/submodules/lighttrack
+	url = https://github.com/Guanghan/lighttrack.git
