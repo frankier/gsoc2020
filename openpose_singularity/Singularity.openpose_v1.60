@@ -65,7 +65,7 @@ From: nvcr.io/nvidia/caffe:20.03-py3
     # Get OpenPose
     cd /opt && \
         git clone --depth 1 \
-             --branch  --single-branch && \
+            https://github.com/CMU-Perceptual-Computing-Lab/openpose.git --branch v1.6.0 --single-branch && \
         cp -R openpose openpose_cpu && \
         cp -R openpose openpose_legacy_gpu
 
