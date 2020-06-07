@@ -4,3 +4,6 @@
 [submodule "skeldump/submodules/lighttrack"]
 	path = skeldump/submodules/lighttrack
 	url = https://github.com/Guanghan/lighttrack.git
+[submodule "skeldump/submodules/ufunclab"]
+	path = skeldump/submodules/ufunclab
+	url = https://github.com/WarrenWeckesser/ufunclab.git
