@@ -64,7 +64,7 @@ From: nvcr.io/nvidia/caffe:20.03-py3
 
     # Get OpenPose
     cd /opt && \
-        git clone --depth 1 \
+        git clone \
             $OPENPOSE_GIT --branch $OPENPOSE_BRANCH --single-branch && \
         cp -R openpose openpose_cpu && \
         cp -R openpose openpose_legacy_gpu
