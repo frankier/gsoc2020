@@ -1,12 +1,3 @@
-[submodule "skeldump/submodules/opencv_wrapper"]
-	path = skeldump/submodules/opencv_wrapper
-	url = https://github.com/frankier/opencv_wrapper.git
-[submodule "skeldump/submodules/lighttrack"]
-	path = skeldump/submodules/lighttrack
-	url = https://github.com/Guanghan/lighttrack.git
-[submodule "skeldump/submodules/ufunclab"]
-	path = skeldump/submodules/ufunclab
-	url = https://github.com/WarrenWeckesser/ufunclab.git
 [submodule "skelshop"]
 	path = skelshop
 	url = git@github.com:frankier/skelshop.git
