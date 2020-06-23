@@ -7,3 +7,10 @@
 [submodule "skeldump/submodules/ufunclab"]
 	path = skeldump/submodules/ufunclab
 	url = https://github.com/WarrenWeckesser/ufunclab.git
+[submodule "skelshop"]
+	path = skelshop
+	url = git@github.com:frankier/skelshop.git
+[submodule "upstreamed/javacpp-presets-add-openpose"]
+	path = upstreamed/javacpp-presets-add-openpose
+	branch = add-openpose
+	url = git@github.com:frankier/javacpp-presets.git
