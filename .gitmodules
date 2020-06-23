@@ -14,3 +14,15 @@
 	path = forks/javacpp-presets-add-openpose
 	branch = add-openpose
 	url = git@github.com:frankier/javacpp-presets.git
+[submodule "forks/opencv_wrapper"]
+	path = forks/opencv
+	branch = redhen
+	url = git@github.com:frankier/opencv_wrapper.git
+[submodule "forks/openpose"]
+	path = forks/openpose
+	branch = enable-identification
+	url = git@github.com:frankier/openpose.git
+[submodule "forks/slurm"]
+	path = forks/slurm
+	branch = req-run
+	url = git@github.com:frankier/slurm.git
