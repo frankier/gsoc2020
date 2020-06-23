@@ -6,7 +6,7 @@
 	branch = add-openpose
 	url = git@github.com:frankier/javacpp-presets.git
 [submodule "forks/opencv_wrapper"]
-	path = forks/opencv
+	path = forks/opencv_wrapper
 	branch = redhen
 	url = git@github.com:frankier/opencv_wrapper.git
 [submodule "forks/openpose"]
