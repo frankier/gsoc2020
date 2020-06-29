@@ -17,3 +17,7 @@
 	path = forks/slurm
 	branch = req-run
 	url = git@github.com:frankier/slurm.git
+[submodule "forks/singularityhub-docs"]
+	path = forks/singularityhub-docs
+	url = git@github.com:frankier/singularityhub-docs.git
+	branch = high-level-deployments
