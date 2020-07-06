@@ -4,7 +4,10 @@ From: openjdk:16-buster
 %post
     JAVA_HOME=/usr/java/openjdk-16
     PATH=$JAVA_HOME/bin:$PATH
-    git clone https://github.com/vitrivr/cineast.git /opt/cineast
+    git clone https://github.com/frankier/cineast.git \
+      --branch gsoc2020 \
+      --single-branch \
+      /opt/cineast
     cd /opt/cineast && ./gradlew deploy
 
 %environment
