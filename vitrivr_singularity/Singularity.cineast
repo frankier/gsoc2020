@@ -1,0 +1,15 @@
+Bootstrap: docker
+From: openjdk:16-buster
+
+%post
+    JAVA_HOME=/usr/java/openjdk-16
+    PATH=$JAVA_HOME/bin:$PATH
+    git clone https://github.com/vitrivr/cineast.git /opt/cineast
+    cd /opt/cineast && ./gradlew deploy
+
+%environment
+    export CINEAST="/opt/cineast"
+    export CINEAST_JAR=$CINEAST/buildlibs/cineast.jar
+
+%runscript
+    cd $CINEAST && exec java -jar $CINEAST_JAR $@
