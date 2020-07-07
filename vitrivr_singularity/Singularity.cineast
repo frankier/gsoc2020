@@ -2,7 +2,7 @@ Bootstrap: docker
 From: openjdk:14-buster
 
 %post
-    JAVA_HOME=/usr/java/openjdk-16
+    JAVA_HOME=/usr/java/openjdk-14
     PATH=$JAVA_HOME/bin:$PATH
     git clone https://github.com/frankier/cineast.git \
       --branch gsoc2020 \
@@ -11,6 +11,8 @@ From: openjdk:14-buster
     cd /opt/cineast && ./gradlew deploy
 
 %environment
+    export JAVA_HOME=/usr/java/openjdk-14
+    export PATH=$JAVA_HOME/bin:$PATH
     export CINEAST="/opt/cineast"
     export CINEAST_JAR=$CINEAST/buildlibs/cineast.jar
 
