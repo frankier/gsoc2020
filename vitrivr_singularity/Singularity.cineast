@@ -11,6 +11,7 @@ From: openjdk:14-buster
       /opt/cineast
     cd /opt/cineast && \
       ./gradlew :cineast-core:generateProto && \
+      ./gradlew getExternalFiles && \
       ./gradlew cineast-runtime:fatJar
 
 %environment
