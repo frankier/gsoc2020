@@ -1,50 +1,44 @@
 {
-    "type": "VIDEO",
-    "input": {
-        "path": "$VIDEO_DIR",
-        "depth": 2,
-        "skip": 0,
-        "id": {
-            "name": "UniqueObjectIdGenerator",
-            "properties": {}
-        }
-    },
-    "extractors": [
-        {"name": "AverageColor"},
-        {"name": "AverageColorGrid8Reduced11"},
-        {"name": "AverageColorGrid8Reduced15"},
-        {"name": "AverageColorRaster"},
-        {"name": "AverageColorRasterReduced11"},
-        {"name": "AverageColorRasterReduced15"},
-        {"name": "AverageFuzzyHist"},
-        {"name": "AverageFuzzyHistNormalized"},
-        {"name": "CLD"},
-        {"name": "CLDReduced11"},
-        {"name": "CLDReduced15"},
-        {"name": "EdgeARP88"},
-        {"name": "EdgeGrid16"},
-        {"name": "EHD"},
-        {"name": "DominantEdgeGrid16"},
-        {"name": "DominantEdgeGrid8"},
-        {"name": "MedianColor"},
-        {"name": "MedianFuzzyHist"},
-        {"name": "SubDivMotionHistogram3"},
-        {"name": "SubDivMotionHistogram5"},
-        {"name": "SubDivMotionHistogramBackground3"},
-        {"name": "SubDivMotionHistogramBackground5"},
-        {"name": "HOGMirflickr25K512"},
-        {"name": "SURFMirflickr25K512"},
-        {"name": "AudioFingerprint"},
-        {"name": "AverageHPCP20F36B"},
-        {"name": "AverageHPCP30F36B"},
-        {"name": "CENS12Shingle"},
-        {"name": "HPCP12Shingle"},
-        {"name": "MFCCShingle"}
-    ],
-    "exporters": [{
-        "name": "ShotThumbNails",
-        "properties": {
-            "destination": "$VITRIVR/thumbnails"
-        }
-    }]
+	"input":{
+		"path": "$VIDEO_DIR",
+		"depth": 3,
+		"skip": 0,
+		"id": {
+			"name": "SequentialObjectIdGenerator",
+			"properties": {}
+		}
+	},
+	"extractors":[
+		{"name": "AverageColor"},
+		{"name": "AverageColorARP44"},
+		{"name": "AverageColorCLD"},
+		{"name": "AverageColorGrid8"},
+		{"name": "AverageColorRaster"},
+		{"name": "AverageFuzzyHist"},
+		{"name": "AverageColorGrid8Reduced15"},
+		{"name": "CLD"},
+		{"name": "EdgeARP88"},
+		{"name": "EdgeGrid16"},
+		{"name": "EHD"},
+		{"name": "HPCP12Shingle"},
+		{"name": "MedianColor"},
+		{"name": "MedianColorGrid8"},
+		{"name": "HOGMirflickr25K512"},
+		{"name": "SURFMirflickr25K512"}
+	],
+	"exporters":[
+		{
+			"name": "ShotThumbnailsExporter",
+			"properties": {
+				"destination":"$THUMB_DIR"
+			}
+		}
+	],
+	"database":{
+		"host": "localhost",
+		"selector": "COTTONTAIL",
+		"writer": "COTTONTAIL",
+		"port": 1865,
+		"plaintext": true
+	}
 }

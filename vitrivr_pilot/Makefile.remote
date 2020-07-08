@@ -1,49 +1,34 @@
-all: doextract.sh runall.sh
+all: runall.sh
 
 clean:
-	rm -f .has_udocker .has_adampro .has_cineast .has_vitrivr .has_nginx runall.sh cineast_built/cineast_job.json doextract.sh
+	rm -f cottontail.sif cineast.sif .has_vitrivr nginx.sif \
+	  runall.sh cineast.json cottontail-data/config.json
 
-.has_udocker:
-	curl https://raw.githubusercontent.com/frankier/udocker/gallo/udocker.py > udocker && \
-	  chmod u+rx ./udocker && \
-	  ./udocker install && \
-	  mv ./udocker ~/.udocker/bin/ && \
-	  touch $@
+cottontail.sif:
+	echo "The next command needs your GitHub username + a GitHub auth token" && \
+	  singularity pull --force --docker-login \
+	  cottontail.sif \
+	  docker://docker.pkg.github.com/vitrivr/cottontaildb/cottontaildb:v0.7
 
-.has_adampro: .has_udocker
-	udocker pull vitrivr/adampro:latest-selfcontained && \
-	  { udocker rm -f adampro || true; } && \
-	  udocker create --name=adampro vitrivr/adampro:latest-selfcontained && \
-	  udocker setup --execmode=S1 adampro && \
-	  touch $@
+cottontail-data/config.json: from_local/cottontail_config.json cottontail.sif
+	mkdir -p cottontail-data/ && \
+	  cp -f $< $@
 
-.has_cineast: from_local/cineast/build/libs from_local/cineast_config.json
-	rm -rf cineast_built && \
-	  cp -r from_local/cineast/build/libs cineast_built && \
-	  cp -f from_local/cineast_config.json cineast_built/cineast.json && \
-	  touch $@
+cineast.sif:
+	singularity pull --force cineast.sif shub://frankier/gsoc2020:cineast
 
-.has_nginx: .has_udocker
-	udocker pull nginx && \
-	  { udocker rm -f nginx || true; } && \
-	  udocker create --name=nginx nginx && \
-	  udocker setup --execmode=S1 nginx && \
-	  touch $@
+cineast.json: from_local/cineast_config.json cineast.sif
+	cp -f $< $@
 
-.has_vitrivr: .has_nginx from_local/vitrivr-ng/dist from_local/vitrivr_config.json
+nginx.sif:
+	singularity pull --force nginx.sif docker://nginx
+
+.has_vitrivr: nginx.sif from_local/vitrivr-ng/dist from_local/vitrivr_config.json
 	rm -rf vitrivr_built && \
 	  cp -r from_local/vitrivr-ng/dist vitrivr_built && \
 	  cat from_local/vitrivr_config.json | envsubst > vitrivr_built/config.json && \
 	  touch $@
 
-runall.sh: .has_adampro .has_cineast .has_vitrivr from_local/runall.sh
+runall.sh: cottontail-data/config.json cineast.json .has_vitrivr from_local/runall.sh
 	rm -f runall.sh runall_screenrc && \
 	  cp from_local/runall.sh from_local/runall_screenrc .
-
-cineast_built/cineast_job.json: from_local/cineast_job.json .has_cineast
-	cat $< | VITRIVR=`pwd`/vitrivr_built envsubst > $@
-
-
-doextract.sh: cineast_built/cineast_job.json .has_cineast from_local/doextract.sh
-	rm -f doextract.sh && \
-	  cp from_local/doextract.sh doextract.sh

@@ -1,0 +1,26 @@
+SHELL := /bin/bash
+.ONESHELL:
+
+all: .indexing-done
+
+clean: | clean-conf
+	rm -f cineast.sif
+
+clean-conf:
+	rm -f cineast.json hpc_job.sh cineast_job.json .indexing-done
+
+cineast.sif:
+	singularity pull cineast.sif shub://frankier/gsoc2020:cineast
+
+cineast.json:
+	cp -f from_local/cineast_config.json $@
+
+hpc_job.sh:
+	cat from_local/hpc_job.sh | EXTRA_SINGULARITY_ARGS="--bind $$VIDEO_DIR" envsubst '$$EXTRA_SINGULARITY_ARGS' > $@ &&
+	  chmod +x $@
+
+cineast_job.json:
+	cat from_local/cineast_job.json | envsubst > $@
+
+.indexing-done: cineast.sif cineast.json cineast_job.json hpc_job.sh
+	salloc --time=8-00:00:00 --cpus-per-task=32 --mem=128gb nohup ./hpc_job.sh $@

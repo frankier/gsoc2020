@@ -5,6 +5,6 @@ startup_message off
 defscrollback 10000
 
 # create windows
-screen -t AdamPRO udocker run --name adampro -p 4040:4040 -p 5890:5890 -p 9099:9099 adampro
-screen -t Cineast java -jar cineast_built/cineast.jar
-screen -t Vitrivr udocker run --name vitrivr -v vitrivr_built:/usr/share/nginx/html:ro nginx
+screen -t Cottontail singularity run --bind `pwd`/cottontail-data:/cottontail-data cottontail.sif
+screen -t Cineast singularity run cineast.sif
+screen -t Vitrivr singularity run --name vitrivr --bind vitrivr_built:/usr/share/nginx/html nginx.sif
