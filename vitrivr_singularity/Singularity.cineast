@@ -21,4 +21,4 @@ From: openjdk:14-buster
     export CINEAST_JAR=$CINEAST/cineast-runtime/build/libs/cineast-runtime-*-full.jar
 
 %runscript
-    cd $CINEAST && exec java -jar $CINEAST_JAR $@
+    cd $CINEAST && exec java -Djava.awt.headless=true -jar $CINEAST_JAR $@
