@@ -11,4 +11,5 @@ EXT_HOST=gallo.cosi.cwru.edu \
 ```
 
 After this is finished, you can ssh into the VPS manually, kill the running
-cottontail and use `./runall.sh`.
+cottontail and use `./runall.sh` which will start all the daemons in a screen
+session.
