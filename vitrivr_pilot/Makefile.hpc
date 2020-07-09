@@ -1,9 +1,10 @@
 SHELL := /bin/bash
 .ONESHELL:
+.PHONY: all clean clean-conf
 
 all: .indexing-done
 
-clean: | clean-conf
+clean: clean-conf
 	rm -f cineast.sif
 
 clean-conf:
