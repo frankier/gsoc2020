@@ -21,3 +21,6 @@
 	path = forks/singularityhub-docs
 	url = git@github.com:frankier/singularityhub-docs.git
 	branch = high-level-deployments
+[submodule "singslurm"]
+	path = singslurm
+	url = git@github.com:frankier/singslurm.git
