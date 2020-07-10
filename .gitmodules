@@ -13,10 +13,6 @@
 	path = forks/openpose
 	branch = enable-identification
 	url = git@github.com:frankier/openpose.git
-[submodule "forks/slurm"]
-	path = forks/slurm
-	branch = req-run
-	url = git@github.com:frankier/slurm.git
 [submodule "forks/singularityhub-docs"]
 	path = forks/singularityhub-docs
 	url = git@github.com:frankier/singularityhub-docs.git
