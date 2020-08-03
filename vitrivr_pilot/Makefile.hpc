@@ -2,7 +2,7 @@ SHELL := /bin/bash
 .ONESHELL:
 .PHONY: all clean clean-conf
 
-all: .indexing-done
+all: cineast.sif cineast.json cineast_job.json hpc_job.sh
 
 clean: clean-conf
 	rm -f cineast.sif
@@ -22,6 +22,3 @@ hpc_job.sh:
 
 cineast_job.json:
 	cat from_local/cineast_job.json | envsubst > $@
-
-.indexing-done: cineast.sif cineast.json cineast_job.json hpc_job.sh
-	salloc --time=8-00:00:00 --cpus-per-task=32 --mem=128gb nohup ./hpc_job.sh $@

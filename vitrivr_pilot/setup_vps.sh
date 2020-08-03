@@ -29,4 +29,5 @@ else
 	echo "Running rsync to VPS"
 	rsync -az --delete . $VPS_LOGIN_STR:$VPS_PILOT_BASE/from_local
 	echo "Running VPS remote bootstrap"
+	ssh -t $VPS_LOGIN_STR $VPS_BOOTSTRAP
 fi

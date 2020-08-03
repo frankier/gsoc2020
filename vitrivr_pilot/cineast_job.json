@@ -9,22 +9,22 @@
 		}
 	},
 	"extractors":[
-		{"name": "averagecolor"},
-		{"name": "averagecolorarp44"},
-		{"name": "averagecolorcld"},
-		{"name": "averagecolorgrid8"},
-		{"name": "averagecolorraster"},
-		{"name": "averagefuzzyhist"},
-		{"name": "averagecolorgrid8reduced15"},
-		{"name": "cld"},
-		{"name": "edgearp88"},
-		{"name": "edgegrid16"},
-		{"name": "ehd"},
-		{"name": "hpcp12shingle"},
-		{"name": "mediancolor"},
-		{"name": "mediancolorgrid8"},
-		{"name": "hogmirflickr25k512"},
-		{"name": "surfmirflickr25k512"}
+		{"name": "AverageColor"},
+		{"name": "AverageColorARP44"},
+		{"name": "AverageColorCLD"},
+		{"name": "AverageColorGrid8"},
+		{"name": "AverageColorRaster"},
+		{"name": "AverageFuzzyHist"},
+		{"name": "AverageColorGrid8Reduced15"},
+		{"name": "CLD"},
+		{"name": "EdgeARP88"},
+		{"name": "EdgeGrid16"},
+		{"name": "EHD"},
+		{"name": "HPCP12Shingle"},
+		{"name": "MedianColor"},
+		{"name": "MedianColorGrid8"},
+		{"name": "HOGMirflickr25K512"},
+		{"name": "SURFMirflickr25K512"}
 	],
 	"imagecache": {
 		"cacheLocation": "/opt/cineast/cache"
@@ -33,15 +33,13 @@
 		{
 			"name": "ShotThumbnailsExporter",
 			"properties": {
-				"destination":"$THUMB_DIR"
+				"destination": "$THUMB_DIR"
 			}
 		}
 	],
 	"database":{
-		"host": "localhost",
-		"selector": "COTTONTAIL",
-		"writer": "COTTONTAIL",
-		"port": 1865,
-		"plaintext": true
+		"host": "$JSON_OUT",
+		"selector": "JSON",
+		"writer": "JSON"
 	}
 }

@@ -99,6 +99,8 @@
 
   "extractor": {
     "threadPoolSize": 64,
+    "taskQueueSize": 80,
+    "shotQueueSize": 80,
     "outputLocation": "out"
   },
 

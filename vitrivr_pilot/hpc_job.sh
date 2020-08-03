@@ -1,33 +1,35 @@
 #!/bin/bash
+#
+#SBATCH --job-name=skeldump_conv_2017
+#
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=128gb
+#SBATCH --time=4-00:00:00
 
-set -o xtrace
-set -euo pipefail
+module load singularity
 
-exec ssh -A $SLURM_JOB_NODELIST bash <<-SSHSCOPE
-	set -o xtrace
-	set -euo pipefail
+# Dir setup
+mkdir -p cineast/logs
+mkdir -p cineast/out
+mkdir -p cineast/cache
 
-	module load singularity
+# DB setup
+singularity run \
+  --bind cineast/logs:/opt/cineast/logs \
+  --bind cineast/out:/opt/cineast/out \
+  --bind cineast/cache:/opt/cineast/cache \
+  $EXTRA_SINGULARITY_ARGS \
+  cineast.sif $(pwd)/cineast.json \
+  setup
 
-	cd $(pwd)
-
-	# Set up tunnel to cottontail
-	ssh -N -L 127.0.0.1:1865:127.0.0.1:1865 gallo.cosi.cwru.edu &
-
-	# DB setup
-	singularity run \
-	  cineast.sif $(pwd)/cineast.json \
-	  setup
-
-	# Extraction
-	mkdir -p cineast/logs
-	mkdir -p cineast/out
-	mkdir -p cineast/cache
-	singularity run \
-	  --bind cineast/logs:/opt/cineast/logs \
-	  --bind cineast/out:/opt/cineast/out \
-	  --bind cineast/cache:/opt/cineast/cache \
-          $EXTRA_SINGULARITY_ARGS \
-	  cineast.sif $(pwd)/cineast.json \
-	  extract --extraction $(pwd)/cineast_job.json && touch $1
-SSHSCOPE
+# Extraction
+singularity exec \
+  --bind cineast/logs:/opt/cineast/logs \
+  --bind cineast/out:/opt/cineast/out \
+  --bind cineast/cache:/opt/cineast/cache \
+  $EXTRA_SINGULARITY_ARGS \
+  cineast.sif bash -c \
+    'java -Djava.awt.headless=true \
+    -jar $CINEAST_JAR cineast.json extract \
+    --extraction cineast_job.json'
