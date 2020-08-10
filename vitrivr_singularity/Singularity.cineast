@@ -4,6 +4,8 @@ From: openjdk:14-buster
 %post
     export JAVA_HOME=/usr/local/openjdk-14
     export PATH=$JAVA_HOME/bin:$PATH
+    apt-get update
+    apt-get install maven
     git clone https://github.com/frankier/cineast.git \
       --recursive \
       --branch gsoc2020 \
