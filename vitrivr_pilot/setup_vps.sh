@@ -13,7 +13,7 @@ cat <<-EOT
 	cd $VPS_PILOT_BASE;
 	ln -sf ./from_local/Makefile.remote Makefile;
 	echo "Running VPS Makefile on \$( whoami )@\$( hostname )";
-	EXT_HOST="$EXT_HOST" VIDEO_DIR="$VIDEO_DIR" make $@;
+	EXT_HOST="$EXT_HOST" VIDEO_BASE="$VIDEO_BASE" make $@;
 EOT
 )
 

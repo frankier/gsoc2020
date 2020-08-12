@@ -2,23 +2,30 @@ SHELL := /bin/bash
 .ONESHELL:
 .PHONY: all clean clean-conf
 
-all: cineast.sif cineast.json cineast_job.json hpc_job.sh
+all: cineast.sif cineast.json hpc_job.sh hpc_node_job.sh input_files.txt
 
 clean: clean-conf
 	rm -f cineast.sif
 
 clean-conf:
-	rm -f cineast.json hpc_job.sh cineast_job.json .indexing-done
+	rm -f cineast.json hpc_job.sh hpc_node_job.sh input_files.txt videos_from_h5s.py
 
 cineast.sif:
 	singularity pull cineast.sif shub://frankier/gsoc2020:cineast
 
 cineast.json:
-	cp -f from_local/cineast_config.json $@
+	cp -f from_local/cineast_extraction_config.json $@
+
+videos_from_h5s.py:
+	cp -f from_local/$@ $@
+
+input_files.txt: videos_from_h5s.py
+	python3 videos_from_h5s.py $$H5_BASE > $@
 
 hpc_job.sh:
-	cat from_local/hpc_job.sh | EXTRA_SINGULARITY_ARGS="--bind $$VIDEO_DIR" envsubst '$$EXTRA_SINGULARITY_ARGS' > $@ &&
+	cat from_local/hpc_job.sh | EXTRA_SINGULARITY_ARGS="--bind $$VIDEO_BASE" envsubst '$$EXTRA_SINGULARITY_ARGS' > $@ &&
 	  chmod +x $@
 
-cineast_job.json:
-	cat from_local/cineast_job.json | envsubst > $@
+hpc_node_job.sh:
+	cat from_local/hpc_node_job.sh | EXTRA_SINGULARITY_ARGS="--bind $$VIDEO_BASE" envsubst '$$EXTRA_SINGULARITY_ARGS' > $@ &&
+	  chmod +x $@

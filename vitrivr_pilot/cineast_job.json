@@ -1,14 +1,20 @@
 {
-	"input":{
-		"path": "$VIDEO_DIR",
-		"depth": 3,
-		"skip": 0,
+	"type": "VIDEO",
+	"input": {
+		"relTo": "$VIDEO_BASE",
+		"path": "$VIDEO_FILE",
 		"id": {
-			"name": "SequentialObjectIdGenerator",
+			"name": "FileNameObjectIdGenerator",
 			"properties": {}
 		}
 	},
-	"extractors":[
+	"segmenter": {
+		"name": "VideoHistogramSegmenter",
+		"properties": {
+			"maxShotLength": "240"
+		}
+	},
+	"extractors": [
 		{"name": "AverageColor"},
 		{"name": "AverageColorARP44"},
 		{"name": "AverageColorCLD"},
@@ -29,7 +35,7 @@
 	"imagecache": {
 		"cacheLocation": "/opt/cineast/cache"
 	},
-	"exporters":[
+	"exporters": [
 		{
 			"name": "ShotThumbnailsExporter",
 			"properties": {
@@ -37,9 +43,10 @@
 			}
 		}
 	],
-	"database":{
+	"database": {
 		"host": "$JSON_OUT",
-		"selector": "JSON",
-		"writer": "JSON"
+		"writer": "JSON",
+		"selector": "NONE",
+		"batchsize": 8
 	}
 }

@@ -1,0 +1,20 @@
+{
+  "database": {},
+  "decoders": {
+    "VIDEO": {
+      "decoder": "FFMpegVideoDecoder"
+    },
+    "IMAGE": {
+      "decoder": "DefaultImageDecoder"
+    },
+    "AUDIO": {
+      "decoder": "FFMpegAudioDecoder"
+    }
+  },
+  "extractor": {
+    "threadPoolSize": 8,
+    "taskQueueSize": 32,
+    "shotQueueSize": 32,
+    "outputLocation": "out"
+  }
+}
