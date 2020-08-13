@@ -16,5 +16,8 @@
     "taskQueueSize": 32,
     "shotQueueSize": 32,
     "outputLocation": "out"
+  },
+  "cache": {
+    "cacheLocation": "/opt/cineast/cache"
   }
 }

@@ -12,11 +12,6 @@ date +"%s" >> ./timing.txt
 
 module load singularity
 
-# Dir setup
-mkdir -p cineast/logs
-mkdir -p cineast/out
-mkdir -p cineast/cache
-
 # Extraction
 while read VIDEO_FILE; do
   export VIDEO_FILE
