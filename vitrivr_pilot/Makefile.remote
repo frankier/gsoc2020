@@ -1,9 +1,9 @@
-all: runall.sh import_data.sh cineast_extraction_config.json load_screenrc
+all: runall.sh import_data.sh cineast_job.json load_screenrc
 
 clean:
 	rm -f cottontail.sif cineast.sif .has_vitrivr nginx.sif \
 	  runall.sh cineast.json cottontail-data/config.json \
-	  import_data.sh cineast_extraction_config.json load_screenrc
+	  import_data.sh cineast_job.json load_screenrc
 
 cottontail.sif:
 	singularity pull --force \
@@ -20,7 +20,7 @@ cineast.sif:
 cineast.json: from_local/cineast_config.json cineast.sif
 	cp -f $< $@
 
-cineast_extraction_config.json: from_local/cineast_extraction_config.json
+cineast_job.json: from_local/cineast_job.json
 	cp -f $< $@
 
 import_data.sh: from_local/import_data.sh

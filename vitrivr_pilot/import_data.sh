@@ -29,7 +29,7 @@ echo "Continuing..."
 
 # Create entities
 $CINEAST setup
-$CINEAST setup --extraction cineast_extraction_config.json
+$CINEAST setup --extraction cineast_job.json
 
 # Import JSON
 for JSON_DIR in $WORK_DIR/*/json
