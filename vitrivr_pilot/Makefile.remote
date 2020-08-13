@@ -1,14 +1,14 @@
-all: runall.sh
+all: runall.sh import_data.sh cineast_extraction_config.json load_screenrc
 
 clean:
 	rm -f cottontail.sif cineast.sif .has_vitrivr nginx.sif \
-	  runall.sh cineast.json cottontail-data/config.json
+	  runall.sh cineast.json cottontail-data/config.json \
+	  import_data.sh cineast_extraction_config.json load_screenrc
 
 cottontail.sif:
-	echo "The next command needs your GitHub username + a GitHub auth token" && \
-	  singularity pull --force --docker-login \
+	singularity pull --force \
 	  cottontail.sif \
-	  docker://docker.pkg.github.com/vitrivr/cottontaildb/cottontaildb:v0.7
+	  docker://frankierr/cottontaildb
 
 cottontail-data/config.json: from_local/cottontail_config.json cottontail.sif
 	mkdir -p cottontail-data/ && \
@@ -18,6 +18,15 @@ cineast.sif:
 	singularity pull --force cineast.sif shub://frankier/gsoc2020:cineast
 
 cineast.json: from_local/cineast_config.json cineast.sif
+	cp -f $< $@
+
+cineast_extraction_config.json: from_local/cineast_extraction_config.json
+	cp -f $< $@
+
+import_data.sh: from_local/import_data.sh
+	cp -f $< $@
+
+load_screenrc: from_local/load_screenrc
 	cp -f $< $@
 
 nginx.sif:

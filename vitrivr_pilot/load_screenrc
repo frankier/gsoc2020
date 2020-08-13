@@ -1,0 +1,8 @@
+# don't display the copyright page
+startup_message off
+
+# increase scrollback buffer size
+defscrollback 10000
+
+# create windows
+screen -t Import bash -c './import_data.sh | tee import.log 2>&1'

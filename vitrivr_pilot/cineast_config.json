@@ -70,6 +70,9 @@
       ],
       "scenecaption": [
         {"feature":  "DescriptionTextSearch", "weight":  1.0}
+      ],
+      "pose": [
+        {"feature":  "pose.PoseKeypointsMulti", "weight":  1.0}
       ]
     }
   },
@@ -126,6 +129,9 @@
   "monitoring":{
     "enablePrometheus": false,
     "prometheusPort": 4569
-  }
+  },
 
+  "pose": {
+    "modelPath": "resources/openpose"
+  }
 }

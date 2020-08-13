@@ -21,6 +21,18 @@ VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
   ./index_on_hpc.sh
 ```
 
+Import all data into Cottontail using Cineast
+
+```
+VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
+  VPS_LOGIN_STR=frr7@gallo.cosi.cwru.edu \
+  VPS_PILOT_BASE='~/vitrivr_pilot' \
+  H5_BASE=/mnt/rds/redhen/gallina/home/frr7/openposeellen \
+  INPUT_FILES=/mnt/rds/redhen/gallina/home/frr7/vitrivr_pilot/input_files.txt \
+  WORK_DIR=/mnt/rds/redhen/gallina/home/frr7/vitrivr_pilot/work/ \
+  ./import_data_vps.sh
+```
+
 `index_on_hpc.sh` tries to clean up after itself, but always double check with
 `squeue -u frr7` and `scancel` if need be.
 
