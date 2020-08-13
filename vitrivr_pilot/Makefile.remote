@@ -2,7 +2,7 @@ all: runall.sh import_data.sh cineast_job.json load_screenrc
 
 clean:
 	rm -f cottontail.sif cineast.sif .has_vitrivr nginx.sif \
-	  runall.sh cineast.json cottontail-data/config.json \
+	  runall.sh cineast.json cottontaildb-data/config.json \
 	  import_data.sh cineast_job.json load_screenrc
 
 cottontail.sif:
@@ -10,8 +10,8 @@ cottontail.sif:
 	  cottontail.sif \
 	  docker://frankierr/cottontaildb
 
-cottontail-data/config.json: from_local/cottontail_config.json cottontail.sif
-	mkdir -p cottontail-data/ && \
+cottontaildb-data/config.json: from_local/cottontail_config.json cottontail.sif
+	mkdir -p cottontaildb-data/ && \
 	  cp -f $< $@
 
 cineast.sif:
@@ -38,6 +38,6 @@ nginx.sif:
 	  cat from_local/vitrivr_config.json | envsubst > vitrivr_built/config.json && \
 	  touch $@
 
-runall.sh: cottontail-data/config.json cineast.json .has_vitrivr from_local/runall.sh
+runall.sh: cottontaildb-data/config.json cineast.json .has_vitrivr from_local/runall.sh
 	rm -f runall.sh runall_screenrc && \
 	  cp from_local/runall.sh from_local/runall_screenrc .

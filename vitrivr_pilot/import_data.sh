@@ -6,9 +6,9 @@ shopt -s globstar
 mkdir -p logs out cache
 
 CINEAST="singularity run \
---bind ./logs:/opt/cineast/logs \
---bind ./out:/opt/cineast/out \
---bind ./cache:/opt/cineast/cache \
+--bind $(pwd)/logs:/opt/cineast/logs \
+--bind $(pwd)/out:/opt/cineast/out \
+--bind $(pwd)/cache:/opt/cineast/cache \
 --bind $WORK_DIR \
 --bind $H5_BASE \
 --bind $VIDEO_BASE \
@@ -18,9 +18,11 @@ CINEIMPORT="$CINEAST import --batchsize 64 --threads $THREADS"
 
 # Start Cottontail
 echo "Starting Cottontail..."
-singularity run \
-  --bind `pwd`/cottontail-data:/cottontail-data \
-  cottontail.sif &
+singularity exec \
+  --bind $(pwd)/cottontaildb-data:/cottontaildb-data \
+  cottontail.sif \
+  /cottontaildb-bin/bin/cottontaildb \
+  /cottontaildb-data/config.json &
 COTTONTAIL_PID=$!
 
 echo "Waiting 10s for start up..."
