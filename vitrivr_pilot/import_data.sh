@@ -14,7 +14,7 @@ CINEAST="singularity run \
 --bind $VIDEO_BASE \
 cineast.sif $(pwd)/cineast.json"
 
-CINEIMPORT="$CINEAST import --batchsize 64 --threads $THREADS"
+CINEIMPORT="$CINEAST import --batchsize 512 --threads $THREADS"
 
 # Start Cottontail
 echo "Starting Cottontail..."
