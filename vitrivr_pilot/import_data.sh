@@ -52,6 +52,9 @@ while read VIDEO_FILE; do
 done < $INPUT_FILES
 wait
 
+# Create indices
+$CINEAST optimize
+
 # Kill Cottontail
 kill $COTTONTAIL_PID
 
