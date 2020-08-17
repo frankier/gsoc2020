@@ -26,7 +26,7 @@ singularity exec \
   --bind $CINEAST_CACHE:/opt/cineast/cache \
   $EXTRA_SINGULARITY_ARGS \
   cineast.sif bash -c \
-    "cd \$CINEAST && \
+    "cd /opt/cineast/ && \
     java -Djava.awt.headless=true \
-    -jar \$CINEAST_JAR cineast.json extract \
+    -jar cineast-cli.jar cineast.json extract \
     --extraction $JOB"

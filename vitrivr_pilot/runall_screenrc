@@ -5,6 +5,18 @@ startup_message off
 defscrollback 10000
 
 # create windows
-screen -t Cottontail singularity exec --bind `pwd`/cottontaildb-data:/cottontaildb-data cottontail.sif /cottontaildb-bin/bin/cottontaildb /cottontaildb-data/config.json
-screen -t Cineast singularity run cineast.sif
-screen -t Vitrivr singularity run --name vitrivr --bind vitrivr_built:/usr/share/nginx/html nginx.sif
+screen -t Cottontail singularity exec \
+  --bind `pwd`/cottontaildb-data:/cottontaildb-data \
+  cottontail.sif \
+  /cottontaildb-bin/bin/cottontaildb /cottontaildb-data/config.json
+
+screen -t Cineast singularity exec \
+  --bind `pwd`/logs:/opt/cineast/logs \
+  --bind `pwd`/out:/opt/cineast/out \
+  --bind `pwd`/cache:/opt/cineast/cache \
+  cineast.sif bash -c \
+  "cd /opt/cineast/ && java -Djava.awt.headless=true -jar cineast-api.jar cineast.json"
+
+screen -t Vitrivr singularity run \
+  --name vitrivr \
+  --bind vitrivr_built:/usr/share/nginx/html nginx.sif

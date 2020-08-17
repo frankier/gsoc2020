@@ -8,14 +8,16 @@ clean:
 cottontail.sif:
 	singularity pull --force \
 	  cottontail.sif \
-	  docker://frankierr/cottontaildb
+	  docker://frankierr/cottontaildb:gsoc2020
 
 cottontaildb-data/config.json: from_local/cottontail_config.json cottontail.sif
 	mkdir -p cottontaildb-data/ && \
 	  cp -f $< $@
 
 cineast.sif:
-	singularity pull --force cineast.sif shub://frankier/gsoc2020:cineast
+	singularity pull --force \
+	  cineast.sif \
+	  docker://frankierr/cineast:gsoc2020
 
 cineast.json: from_local/cineast_config.json cineast.sif
 	cp -f $< $@

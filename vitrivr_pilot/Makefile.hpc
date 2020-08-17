@@ -11,7 +11,7 @@ clean-conf:
 	rm -f cineast.json hpc_job.sh hpc_node_job.sh input_files.txt videos_from_h5s.py
 
 cineast.sif:
-	singularity pull cineast.sif shub://frankier/gsoc2020:cineast
+	singularity pull cineast.sif docker://frankierr/cineast:gsoc2020
 
 cineast.json:
 	cp -f from_local/cineast_extraction_config.json $@
