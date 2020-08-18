@@ -9,3 +9,5 @@ ssh -t $VPS_LOGIN_STR <<-EOT
 	  THREADS=8 \
 	  screen -d -m -c load_screenrc
 EOT
+
+echo "Screen session started. Attach to follow progress."
