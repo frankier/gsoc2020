@@ -12,7 +12,7 @@ CINEAST="singularity run \
 --bind $WORK_DIR \
 --bind $H5_BASE \
 --bind $VIDEO_BASE \
-cineast.sif $(pwd)/cineast.json"
+cineast.sif cli $(pwd)/cineast.json"
 
 CINEIMPORT="$CINEAST import --batchsize 512 --threads $THREADS"
 
