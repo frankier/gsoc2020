@@ -16,6 +16,9 @@ cineast.sif cli $(pwd)/cineast.json"
 
 CINEIMPORT="$CINEAST import --batchsize 512 --threads $THREADS"
 
+# Deleting old Cottontail database
+rm -rf ./cottontaildb-data/catalogue.db ./cottontaildb-data/schema_cineast
+
 # Start Cottontail
 echo "Starting Cottontail..."
 singularity exec \
