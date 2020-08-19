@@ -1,7 +1,10 @@
 all: vitrivr-ng/dist
 
+clean:
+	rm -rf vitrivr-ng
+
 vitrivr-ng/dist:
-	git clone https://github.com/vitrivr/vitrivr-ng.git --branch dev vitrivr-ng
+	git clone https://github.com/frankier/vitrivr-ng.git --branch webcam vitrivr-ng
 	cd vitrivr-ng && \
 	  npm install && \
 	  npm run build -prod
