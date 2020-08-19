@@ -1,6 +1,3 @@
-Generate a passphrase-less key at ~/.ssh/id_gallo and add it to
-~/.ssh/authorized_keys on gallo.
-
 Initial VPS setup::
 
 ```
