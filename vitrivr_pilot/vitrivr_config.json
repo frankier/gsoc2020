@@ -7,8 +7,8 @@
     "ping_interval": 10000
   },
   "resources": {
-    "host_thumbnails" : "http://$EXT_HOST/thumbnails/:o/:s:x",
-    "host_objects": "http://$EXT_HOST/objects/:p",
+    "host_thumbnails" : "http://$EXT_HOST:9021/thumbnails/:o/:s:x",
+    "host_objects": "http://$EXT_HOST:9021/objects/:p",
     "suffix_default":"jpg",
     "suffix": {
       "IMAGE": "png",
@@ -26,7 +26,8 @@
       "text": true,
       "tag": false,
       "semantic": true,
-      "boolean": true
+      "boolean": true,
+      "pose": true
     },
     "config": {
       "hints": ["exact"],
