@@ -38,3 +38,9 @@ VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
 
 After this is finished, you can ssh into the VPS manually,and use `./runall.sh`
 which will start all the daemons in a screen session.
+
+You can then tunnel to check using:
+
+```
+VPS_LOGIN_STR=frr7@gallo.cosi.cwru.edu ./tunnel_pilot.sh
+```
