@@ -32,6 +32,7 @@ echo "Waiting 10s for start up..."
 sleep 10
 echo "Continuing..."
 
+bash <<-EOT
 # Create entities
 $CINEAST setup
 $CINEAST setup --extraction cineast_job.json
@@ -56,6 +57,7 @@ while read VIDEO_FILE; do
     -i $VIDEO_BASE/$OCR_FILE
 done < $INPUT_FILES
 wait
+EOT
 
 # Create indices
 $CINEAST optimize
@@ -65,4 +67,4 @@ kill $COTTONTAIL_PID
 
 # Copy thumbnails
 mkdir -p $VPS_PILOT_BASE/thumbnails
-cp -r work/*/thumbs/* $VPS_PILOT_BASE/thumbnails
+cp -r $WORK_DIR/*/thumbs/* $VPS_PILOT_BASE/thumbnails
