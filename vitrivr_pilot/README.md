@@ -25,6 +25,7 @@ VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
   VPS_LOGIN_STR=frr7@gallo.cosi.cwru.edu \
   VPS_PILOT_BASE='~/vitrivr_pilot' \
   H5_BASE=/mnt/rds/redhen/gallina/home/frr7/openposeellen \
+  PRE_EMBED_HAND_JSON_BASE=/mnt/rds/redhen/gallina/home/frr7/embedtrain/work/pre-embed-hand-json/ \
   INPUT_FILES=/mnt/rds/redhen/gallina/home/frr7/vitrivr_pilot/input_files.txt \
   WORK_DIR=/mnt/rds/redhen/gallina/home/frr7/vitrivr_pilot/work/ \
   ./import_data_vps.sh

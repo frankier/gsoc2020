@@ -46,6 +46,9 @@ done
 # Import poses
 $CINEIMPORT -t posehdf5 -i $H5_BASE
 
+# Import preembedded hand poses
+$CINEIMPORT -t handpreembedjson -i $H5_BASE
+
 # Import subtitles
 while read VIDEO_FILE; do
   SUB_FILE="${VIDEO_FILE%.*}.txt"
