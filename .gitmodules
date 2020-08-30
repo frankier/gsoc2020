@@ -17,6 +17,18 @@
 	path = forks/singularityhub-docs
 	url = git@github.com:frankier/singularityhub-docs.git
 	branch = high-level-deployments
+[submodule "forks/cineast"]
+	path = forks/cineast
+	url = git@github.com:frankier/cineast.git
+	branch = gsoc2020
+[submodule "forks/vitrivr-ng"]
+	path = forks/vitrivr-ng
+	url = git@github.com:frankier/vitrivr-ng.git
+	branch = webcam
+[submodule "forks/cottontaildb"]
+	path = forks/cottontaildb
+	url = git@github.com:frankier/cottontaildb.git
+	branch = gsoc2020
 [submodule "singslurm"]
 	path = singslurm
 	url = git@github.com:frankier/singslurm.git
