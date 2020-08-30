@@ -7,6 +7,6 @@ defscrollback 10000
 # create windows
 screen -t Cottontail bash -c "singularity exec --bind $(pwd)/cottontaildb-data:/cottontaildb-data cottontail.sif /cottontaildb-bin/bin/cottontaildb /cottontaildb-data/config.json"
 
-screen -t Cineast bash -c 'singularity exec --bind $(pwd)/logs:/opt/cineast/logs --bind $(pwd)/out:/opt/cineast/out --bind $(pwd)/cache:/opt/cineast/cache cineast.sif bash -c "cd /opt/cineast/ && java -Djava.awt.headless=true -jar cineast-api.jar cineast.json"'
+screen -t Cineast bash -c 'singularity exec --bind $(pwd)/logs:/opt/cineast/logs --bind $(pwd)/out:/opt/cineast/out --bind $(pwd)/cache:/opt/cineast/cache cineast.sif bash -c "LD_LIBRARY_PATH=/opt/libtorch/lib:\$LD_LIBRARY_PATH cd /opt/cineast/ && java -Djava.awt.headless=true -jar cineast-api.jar cineast.json"'
 
 screen -t Vitrivr bash -c 'cd vitrivr_built && python3 -m http.server --bind 127.0.0.1 9021'
