@@ -11,6 +11,7 @@ CINEAST="singularity run \
 --bind $(pwd)/cache:/opt/cineast/cache \
 --bind $WORK_DIR \
 --bind $H5_BASE \
+--bind $PRE_EMBED_HAND_JSON_BASE \
 --bind $VIDEO_BASE \
 cineast.sif cli $(pwd)/cineast.json"
 
@@ -47,7 +48,7 @@ done
 $CINEIMPORT -t posehdf5 -i $H5_BASE
 
 # Import preembedded hand poses
-$CINEIMPORT -t handpreembedjson -i $H5_BASE
+$CINEIMPORT -t handpreembedjson -i $PRE_EMBED_HAND_JSON_BASE
 
 # Import subtitles
 while read VIDEO_FILE; do
