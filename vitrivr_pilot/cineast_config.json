@@ -71,8 +71,11 @@
       "scenecaption": [
         {"feature":  "DescriptionTextSearch", "weight":  1.0}
       ],
-      "pose": [
+      "poselit": [
         {"feature":  "pose.PoseKeypointsMulti", "weight":  1.0}
+      ],
+      "posesem": [
+        {"feature":  "pose.HandPoseEmbeddingMulti", "weight":  1.0}
       ]
     }
   },
