@@ -18,7 +18,20 @@ VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
   ./index_on_hpc.sh
 ```
 
-Import all data into Cottontail using Cineast
+Pre embedding is part of the embedding training code. Get skelshop and run
+something like this on a HPC node:
+
+```
+SIF_PATH=/home/frr7/sifs/skelshop_latest.sif SNAKEFILE=/opt/skelshop/embedtrain/Snakefile SING_EXTRA_ARGS="--bind /mnt/rds/redhen/gallina/home/frr7/openposeellen" CLUSC_CONF=/opt/skelshop/contrib/slurm/embedtrain.clusc.json ~/run_coord.sh --config '"EMBED_FLAGS=--device cuda --batch-size 16384"' EMBED_INPUT=/mnt/rds/redhen/gallina/home/frr7/openposeellen --cores 4 pre_embed_all
+```
+
+Currently this has to be converted to JSON to workaround an issue in
+netcdf-java https://github.com/Unidata/netcdf-java/issues/460
+
+Copy skelshop/contrib/fixups/h5_to_json.sh to same directory prembedding was
+run from and run it.
+
+Import all data into Cottontail using Cineast:
 
 ```
 VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
