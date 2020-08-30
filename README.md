@@ -5,7 +5,9 @@ actual coding has taken place including forks of other projects.
 
 ## Contents
 
-* `attic` contains abandoned work: hand pose annotation
+* `attic` contains old and abandoned work:
+  * Hand pose annotation
+  * Singularity def files for Cineast (Docker is used now)
 * `openpose_singularity` contains Singularity container for OpenPose
 * `skelshop` contains a *submodule* for the skelshop utility, which contains
   all the Python code/Snakemake pipelines, for skeleton dumping, tracking,
