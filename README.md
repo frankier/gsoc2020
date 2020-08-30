@@ -9,6 +9,8 @@ actual coding has taken place including forks of other projects.
   * Hand pose annotation
   * Singularity def files for Cineast (Docker is used now)
 * `openpose_singularity` contains Singularity container for OpenPose
+* `singslurm` (Snakemake SLURM profile) Run SLURM outside container by
+    communicating over the filesystem
 * `skelshop` contains a *submodule* for the skelshop utility, which contains
   all the Python code/Snakemake pipelines, for skeleton dumping, tracking,
   segmentation, and embedding pipelines
@@ -16,8 +18,6 @@ actual coding has taken place including forks of other projects.
   * `javacpp-presets-add-openpose`: OpenPose JavaCPP binding
   * `opencv_wrapper`: Add a couple of extra methods
   * `openpose`: Improve Python API and enable broken tracking
-  * `slurm`: (Snakemake SLURM profile) Run SLURM outside container by
-    communicating over the filesystem
 * `vitrivr_pilot` contains scripts to deploy pilot Vitrivr instance
 * `refreeze_hand_tracking` contains code to refreeze a pretrained hand
   detection model 
