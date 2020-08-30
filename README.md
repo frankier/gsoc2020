@@ -19,3 +19,5 @@ actual coding has taken place including forks of other projects.
   * `slurm`: (Snakemake SLURM profile) Run SLURM outside container by
     communicating over the filesystem
 * `vitrivr_pilot` contains scripts to deploy pilot Vitrivr instance
+* `refreeze_hand_tracking` contains code to refreeze a pretrained hand
+  detection model 
