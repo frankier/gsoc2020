@@ -15,6 +15,7 @@ actual coding has taken place including forks of other projects.
   all the Python code/Snakemake pipelines, for skeleton dumping, tracking,
   segmentation, and embedding pipelines
 * `forks` contains *submodules* with forks of existing repos:
+  * `vitrivr-ng`, `cineast` & `cottontail` are forks of Vitrivr projects
   * `javacpp-presets-add-openpose`: OpenPose JavaCPP binding
   * `opencv_wrapper`: Add a couple of extra methods
   * `openpose`: Improve Python API and enable broken tracking
