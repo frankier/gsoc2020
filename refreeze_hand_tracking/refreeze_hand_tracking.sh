@@ -12,6 +12,6 @@ docker run \
     --input_type image_tensor \
     --pipeline_config_path /checkpoints/pipeline.config \
     --trained_checkpoint_prefix /checkpoints/model.ckpt \
-    --output_directory /checkpoints/hand_inference_graph
+    --output_directory /checkpoints/refrozen
 
-mv ./handtracking/model-checkpoint/ssdlitemobilenetv2/hand_inference_graph/saved_model/saved_model.pb refrozen.pb
+mv ./handtracking/model-checkpoint/ssdlitemobilenetv2/refrozen/frozen_inference_graph.pb refrozen_inference_graph.pb
