@@ -28,5 +28,5 @@ singularity exec \
   cineast.sif bash -c \
     "cd /opt/cineast/ && \
     java -Djava.awt.headless=true \
-    -jar cineast-cli.jar cineast.json extract \
+    -jar cineast-cli.jar $(pwd)/cineast.json extract \
     --extraction $JOB"
