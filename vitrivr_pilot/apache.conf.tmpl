@@ -1,0 +1,10 @@
+Alias /vitrivr $VITRIVR_DIR
+
+<Directory $VITRIVR_DIR>
+    Require all granted
+</Directory>
+
+<Location /cineast>
+    ProxyPass ws://localhost:$CINEAST_PORT/
+    ProxyPassReverse ws://localhost:$CINEAST_PORT/
+</Location>

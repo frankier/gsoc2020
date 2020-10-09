@@ -45,3 +45,7 @@ nginx.sif:
 runall.sh: cottontaildb-data/config.json cineast.json .has_vitrivr from_local/runall.sh
 	rm -f runall.sh runall_screenrc && \
 	  cp from_local/runall.sh from_local/runall_screenrc .
+
+vitrivr.apache.conf: from_local/apache.conf.tmpl
+	export VITRIVR_DIR=`pwd`/vitrivr_built CINEAST_PORT=4567 && \
+	  cat $< | envsubst '$$VITRVIR_DIR $$CINEAST_PORT' > $@

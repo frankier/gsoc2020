@@ -7,4 +7,4 @@ vitrivr-ng/dist:
 	git clone https://github.com/frankier/vitrivr-ng.git --branch webcam vitrivr-ng
 	cd vitrivr-ng && \
 	  npm install && \
-	  npm run build -prod
+	  npm run build -- --deploy-url /vitrivr/ --base-href /vitrivr/ --prod

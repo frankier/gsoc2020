@@ -1,14 +1,15 @@
 {
   "api": {
     "host" : "$EXT_HOST",
-    "port" : 4567,
-    "protocol_http": "http",
-    "protocol_ws": "ws",
-    "ping_interval": 10000
+    "port" : 443,
+    "protocol_http": "https",
+    "protocol_ws": "wss",
+    "ping_interval": 10000,
+    "prefix": "/cineast/"
   },
   "resources": {
-    "host_thumbnails" : "http://$EXT_HOST:9021/thumbnails/:o/:s:x",
-    "host_objects": "http://$EXT_HOST:9021/objects/:p",
+    "host_thumbnails" : "https://$EXT_HOST/vitrivr/thumbnails/:o/:s:x",
+    "host_objects": "https://$EXT_HOST/vitrivr/objects/:p",
     "suffix_default":"jpg",
     "suffix": {
       "IMAGE": "png",

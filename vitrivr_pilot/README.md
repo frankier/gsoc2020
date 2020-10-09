@@ -50,6 +50,10 @@ VIDEO_BASE=/mnt/rds/redhen/gallina/tv \
 After this is finished, you can ssh into the VPS manually,and use `./runall.sh`
 which will start all the daemons in a screen session.
 
+The file `vitrivr.apache.conf` can be dropped into `/etc/httpd/conf.d/` to set
+up Apache for proxying under `/vitrivr/` and `/cineast/`. Make sure mod_proxy
+and mod_proxy_wstunnel are loaded.
+
 You can then tunnel to check using:
 
 ```
