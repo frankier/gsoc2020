@@ -87,7 +87,9 @@ From: nvcr.io/nvidia/caffe:20.03-py3
         -DBUILD_CAFFE=OFF \
         -DCUDA_ARCH=All \
         .. && \
-        make -j`nproc`
+        make -j`nproc` && \
+        mv /opt/openpose/models /opt/openpose_models && \
+        rm -rf /opt/openpose/3rdparty /opt/openpose/.git
 
     # Build CPU OpenPose
     mkdir -p /opt/openpose_cpu/build && \
@@ -96,8 +98,12 @@ From: nvcr.io/nvidia/caffe:20.03-py3
         cmake \
         -DGPU_MODE=CPU_ONLY \
         -DBUILD_PYTHON=ON \
+	-DDOWNLOAD_BODY_25_MODEL=OFF \
+	-DDOWNLOAD_FACE_MODEL=OFF \
+	-DDOWNLOAD_HAND_MODEL=OFF \
         .. && \
-        make -j`nproc`
+        make -j`nproc` && \
+        rm -rf /opt/openpose/3rdparty /opt/openpose/.git
 
     # Build legacy GPU OpenPose
     mkdir -p /opt/openpose_legacy_gpu/build && \
@@ -108,8 +114,12 @@ From: nvcr.io/nvidia/caffe:20.03-py3
         -DBUILD_PYTHON=ON \
         -DCMAKE_EXE_LINKER_FLAGS="-Wl,-rpath-link=/usr/local/cuda/lib64/stubs" \
         -DCUDA_ARCH=All \
+	-DDOWNLOAD_BODY_25_MODEL=OFF \
+	-DDOWNLOAD_FACE_MODEL=OFF \
+	-DDOWNLOAD_HAND_MODEL=OFF \
         .. && \
-        make -j`nproc`
+        make -j`nproc` && \
+        rm -rf /opt/openpose/3rdparty /opt/openpose/.git
 
     # Build CUDA capability checker
     g++ /cudacap.cxx -I/usr/local/cuda/include -o /cudacap /usr/local/cuda/lib64/libcudart.so
@@ -140,6 +150,7 @@ From: nvcr.io/nvidia/caffe:20.03-py3
     export OPENPOSE=$OPENPOSE_SRC/build
     export OPENPOSE_BIN=$OPENPOSE/examples/openpose/openpose.bin
     export PYTHONPATH="$OPENPOSE/python:$PYTHONPATH"
+    export OPENPOSE_MODELS=/opt/openpose_models
 
 
 %runscript
