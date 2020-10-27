@@ -6,6 +6,12 @@ From: nvcr.io/nvidia/caffe:20.03-py3
     cudacap.cxx
 
 %post
+    # Remove examples and NVidia NSight
+    rm -rf \
+        /workspace \
+	/usr/local/cuda-10.2/NsightSystems-cli-2020.1.1 \
+	/opt/nvidia
+
     # Packages
     export LC_ALL=C
     apt-get -y --no-install-recommends update && \
@@ -103,7 +109,7 @@ From: nvcr.io/nvidia/caffe:20.03-py3
 	-DDOWNLOAD_HAND_MODEL=OFF \
         .. && \
         make -j`nproc` && \
-        rm -rf /opt/openpose/3rdparty /opt/openpose/.git
+        rm -rf /opt/openpose_cpu/3rdparty /opt/openpose_cpu/.git
 
     # Build legacy GPU OpenPose
     mkdir -p /opt/openpose_legacy_gpu/build && \
@@ -119,7 +125,7 @@ From: nvcr.io/nvidia/caffe:20.03-py3
 	-DDOWNLOAD_HAND_MODEL=OFF \
         .. && \
         make -j`nproc` && \
-        rm -rf /opt/openpose/3rdparty /opt/openpose/.git
+        rm -rf /opt/openpose_legacy_gpu/3rdparty /opt/openpose_legacy_gpu/.git
 
     # Build CUDA capability checker
     g++ /cudacap.cxx -I/usr/local/cuda/include -o /cudacap /usr/local/cuda/lib64/libcudart.so
