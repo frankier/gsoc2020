@@ -68,6 +68,18 @@ From: nvcr.io/nvidia/caffe:20.03-py3
         apt-get update && \
         apt-get -y --no-install-recommends install cmake
 
+    # Relink OpenCV against ffmpeg
+    cd /opt && \
+        wget https://github.com/opencv/opencv/archive/3.4.0.zip && \
+	unzip 3.4.0.zip && \
+	cd opencv-3.4.0 && \
+	mkdir -p build && cd build && \
+	cmake -DCMAKE_INSTALL_PREFIX=/usr ../ && \
+	make -j4 && \
+	make install && \
+	cd ../.. && \
+	rm -rf opencv-3.4.0 3.4.0.zip
+
     # Get OpenPose
     cd /opt && \
         git clone \
